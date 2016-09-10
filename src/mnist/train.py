@@ -8,6 +8,7 @@ import time
 
 import chainer
 from chainer import cuda
+from chainer import functions as F
 from chainer import optimizers
 from chainer.dataset import convert
 from chainer.serializers import npz
@@ -119,7 +120,7 @@ if __name__ == '__main__':
         # 精度の計算(学習時に必須ではない)
         acc = F.accuracy(y, t)
         # ネットワークの勾配初期化
-        net.zerograds()
+        net.cleargrads()
         # バックプロパゲーションを行い勾配を計算する
         loss.backward()
         # パラメータを更新する
