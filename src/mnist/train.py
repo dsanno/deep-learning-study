@@ -8,8 +8,6 @@ import time
 
 import chainer
 from chainer import cuda
-from chainer import links as L
-from chainer import functions as F
 from chainer import optimizers
 from chainer.dataset import convert
 from chainer.serializers import npz

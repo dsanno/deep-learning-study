@@ -9,7 +9,6 @@ from PIL import Image
 import chainer
 from chainer import cuda
 from chainer import functions as F
-from chainer import links as L
 from chainer.serializers import npz
 
 import net as net_module
