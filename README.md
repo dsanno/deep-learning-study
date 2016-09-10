@@ -3,6 +3,7 @@
 ## 実行環境
 
 * [Chainer](http://chainer.org/) 1.15
+* [Pillow](http://pillow.readthedocs.io/en/3.0.x/index.html)
 
 ## 目次
 
