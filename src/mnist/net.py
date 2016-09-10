@@ -10,7 +10,7 @@ class MLP(chainer.Chain):
 
     def __init__(self, n_in, n_out, n_hidden):
         # Networkの持つLinkを定義する
-        # superクラスの__ini__を使う方法と
+        # superクラスの__init__を使う方法と
         # add_link()メソッドで追加する方法とがある
         # Chainer1.12からL.Linear()の第1引数はNoneでよく、
         # その場合入力サイズは実際のデータから自動的に決まる
