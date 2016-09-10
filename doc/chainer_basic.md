@@ -2,7 +2,7 @@
 
 Chainerに限らずニューラルネットワークのフレームワークは機能ごとにモジュール化されており、必要な機能を組み合わせて目的に沿ったニューラルネットワークを構築したり、学習を行ったりすることが容易になっている。
 
-注意: ここの説明はTrainerを使用していないためChainer公式のMNISTデータセットの学習とは異なる。Trainerを使用しない理由は(ChainerのTrainerについて)[chainer_trainer.md]を参照すること。
+注意: ここの説明はTrainerを使用していないためChainer公式のMNISTデータセットの学習とは異なる。Trainerを使用しない理由は[ChainerのTrainerについて](chainer_trainer.md)を参照すること。
 
 ## 学習とは
 
@@ -14,18 +14,18 @@ Chainerに限らずニューラルネットワークのフレームワークは�
 
 通常以下の3つを用意する。それぞれ入力データと教師データとがある。
 
-* 学習データ (train data)
+* 学習データ (train data)  
 パラメータ学習に使用するデータ
-* validationデータ (validation data)
+* validationデータ (validation data)  
 どのiteration/epochでのモデルが最適であるか比較したり、ハイパーパラメータのどの値が適切かを比較するのに使用するデータ
-* テストデータ (test data)
+* テストデータ (test data)  
 学習後のモデルを評価するのに使用するデータ
 
 ### ニューラルネットワークとoptimizerを構築する
 
 * ニューラルネットワークを構築する  
 ニューラルネットワークの各層はモジュール化されており、モジュールを選択して結合することで容易に構築できるようになっている。必要ならパラメータをファイルから読み込む
-* optimizerを構築する
+* optimizerを構築する  
 どのoptimizerを使用するか決め、ニューラルネットワークと関連付ける
 
 ### 学習
@@ -64,7 +64,7 @@ Chainerでは`chainer.datasets.get_mnist`を使うことでMNISTデータセッ�
 #### データの取得
 
 `Iterator`を使うことで学習データ、テストデータを順に取得することができる。
-`Iterator`については(Chainer Referance ManualのIterator examples)[http://docs.chainer.org/en/stable/reference/iterators.html]を参照のこと。
+`Iterator`については[Chainer Referance ManualのIterator examples](http://docs.chainer.org/en/stable/reference/iterators.html)を参照のこと。
 
 ```
 > batch_size = 100
@@ -72,7 +72,7 @@ Chainerでは`chainer.datasets.get_mnist`を使うことでMNISTデータセッ�
 > batch = train_iterator.next()
 ```
 
-`batch`はlistで、各要素は1枚の画像を表すnumpy配列と正解ラベルを表す整数とのタプルである。
+`batch`はlistで、各要素は1枚の画像を表すnumpy配列と正解ラベルを表す整数とのtupleである。
 これを複数画像のnumpy配列と正解ラベルのnumpy配列に変換するには`chainer.dataset.convert.concat_examples`を使う。
 
 ```
@@ -119,7 +119,7 @@ class MLP(chainer.Chain):
 
 * `chainer.Chain`を継承したクラスを定義する
 * `__init__`で必要な`link`を追加する。`link`はパラメータつきの層として機能し、ここで追加した`link`の持つパラメータが学習対象のパラメータとなる。
-* `__call__`で層をどう結合するかを定義する。
+* `__call__`で各層をどう結合するかを定義する。
 
 `__init__`と`__call__`の引数は自由に決めることができる。例えば`__init__`の引数に中間層の大きさを渡したり、`__call__`が複数の入力データを受け付けるようにすることができる。
 
@@ -153,7 +153,7 @@ optimizer.setup(net)
 y = net(chainer.Variable(x), train=True)
 ```
 
-Chainer 1.12から以下のように`chainer.Variable`インスタンス生成を省略できるようになった。numpy配列を直接渡した場合には内部で`Variable`インスタンスを生成する。
+Chainer 1.10から以下のように`chainer.Variable`インスタンス生成を省略できるようになった。numpy配列を直接渡した場合には内部で`Variable`インスタンスを生成する。
 
 ```
 y = net(x, train=True)
@@ -183,6 +183,8 @@ loss = F.softmax_cross_entropy(y, t)
 net.cleargrads()
 loss.backward()
 ```
+
+Chainer 1.14までは勾配初期化に`zerograds`メソッドを使用していたが1.15からdeprecatedとなった。
 
 #### 勾配を基にパラメータを更新する
 
