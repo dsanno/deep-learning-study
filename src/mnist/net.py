@@ -24,13 +24,12 @@ class MLP(chainer.Chain):
         # Linkはcallableとなっており、関数として呼び出すとLinkの処理
         # L.LinearはWx + bを計算する(W, bはL.Linearが持つ重み行列とバイアス項)
         h = self.l1(x)
-        # Dropoutを実行する
-        # Dropoutは学習時と予測時とで挙動が異なるので、trainでどちらであるかを指定する必要がある
-        h = F.dropout(h, 0.5, train=train)
+        # Dropoutを実行する場合、学習時と予測時とで挙動が異なるので、trainでどちらであるかを指定する必要がある
+        # h = F.dropout(h, 0.25, train=train)
         # ReLUを実行する
         h = F.relu(h)
         h = self.l2(h)
-        h = F.dropout(h, 0.5, train=train)
+        # h = F.dropout(h, 0.25, train=train)
         h = F.relu(h)
         h = self.l3(h)
         return h
@@ -67,7 +66,6 @@ class CNN(chainer.Chain):
         h = F.relu(h)
         h = F.max_pooling_2d(h, 2)
         h = self.fc4(h)
-        h = F.dropout(h, train=train)
         h = F.relu(h)
         h = self.fc5(h)
         return h
