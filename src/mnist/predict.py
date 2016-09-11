@@ -9,7 +9,7 @@ from PIL import Image
 import chainer
 from chainer import cuda
 from chainer import functions as F
-from chainer.serializers import npz
+from chainer import serializers
 
 import net as net_module
 
@@ -30,7 +30,7 @@ def main(args):
         xp = cuda.cupy
     else:
         xp = np
-    npz.load_npz(args.model_file, net)
+    serializers.load_npz(args.model_file, net)
     image = Image.open(args.image_file).convert('L').resize((28, 28), Image.BILINEAR)
     # 学習データは値の範囲が0～1なのでそれに合わせるために255で割る
     # 学習データは背景が0なので反転する

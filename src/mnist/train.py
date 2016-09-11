@@ -10,8 +10,8 @@ import chainer
 from chainer import cuda
 from chainer import functions as F
 from chainer import optimizers
+from chainer import serializers
 from chainer.dataset import convert
-from chainer.serializers import npz
 
 import net as net_module
 
@@ -145,7 +145,7 @@ if __name__ == '__main__':
             if valid_acc > best_valid_acc:
                 best_valid_acc = valid_acc
                 best_test_acc = test_acc
-                npz.save_npz('{}.model'.format(prefix), net)
+                serializers.save_npz('{}.model'.format(prefix), net)
     train_iterator.finalize()
 
     print('best test accuracy: {}'.format(best_test_acc))
