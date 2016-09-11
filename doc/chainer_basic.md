@@ -37,6 +37,10 @@ Chainerに限らずニューラルネットワークのフレームワークは�
 * 損失から各パラメータの勾配を求める
 * 勾配を基にパラメータを更新する
 
+### 学習後のパラメータをファイルに保存する
+
+学習後のパラメータを保存しておいて予測時に使用する
+
 ## 教師あり学習の詳細
 
 ### データセットを用意する
@@ -192,4 +196,80 @@ optimizerの`update`メソッドを呼ぶだけである。
 
 ```
 optimizer.update()
+```
+
+### 学習後のパラメータをファイルに保存する
+
+パラメータをファイルに保存するには`chainer.serializers`を使う。
+ここでは`save_npz`メソッドを使って保存する例を挙げる。
+
+```
+from chainer import serializers
+
+serializers.save_npz('mnist.model', net)
+```
+
+`save_npz`メソッドで保存したファイルは`load_npz`メソッドで読み込むことができる。
+
+```
+serializers.load_npz('mnist.model', net)
+```
+
+`serializers`には他にも保存・読み込みを行うためのメソッドがある。
+詳細は[Chainer Reference ManualのSerializersの項](http://docs.chainer.org/en/stable/reference/serializers.html)を参照すること。
+
+## ニューラルネットワークを使った予測
+
+### ニューラルネットワークを構築する
+
+学習時と同様にニューラルネットワークのインスタンスを生成した後、ファイルからパラメータを読み込む。
+
+```
+from chainer import serializers
+
+net = MLP(28 * 28, 10, 100)
+serializers.load_npz('mnist.model', net)
+```
+
+### 入力データを生成する
+
+画像を読み込み、numpy配列(またはcupy配列)に変換する。ここではPillowを使って画像を読み込んでいる。注意する点として、学習データの値の範囲が0～1で、背景が黒(0)なので、予測時の入力データも同様になるように変換する必要がある。
+
+複数の画像を一度に入力することも可能である。その場合入力となる配列のshapeは(画像枚数, 画像のピクセル数)となる
+
+```
+import numpy as np
+from PIL import Image
+
+image = Image.open('sample.png').convert('L').reseize((28, 28), Image.BILINEAR)
+image = 1 - np.asarray(image).astype(np.float32) / 255
+image = image.reshape((1, -1))
+```
+
+### ニューラルネットワークに入力する
+
+ニューラルネットワークインスタンスに入力となる配列を渡す。今回使用する`MLP`クラスは、引数として学習時かどうかを判別する`train`をとるが、今は予測時なので`False`を渡す。
+
+`chainer.Variable`の`volatile=True`は出力が呼び出された`function`への参照を持たないことを意味する。`volatile`を有効にすると`function`の呼び出しを逆順にたどれなくなるのでバックプロパゲーションができなくなるが、消費メモリ量は減る。
+
+```
+y = net(chainer.Variable(image, volatile=True), train=False)
+```
+
+以下のように`chainer.Variable`を省略することが可能だが、無駄なメモリ消費を抑えるために`Variable`を使用して`volatile`を有効にしたほうが良い。
+
+```
+y = net(image, train=False)
+```
+
+### Softmax値を求める
+
+出力結果としてどのラベルが選ばれたかを知るためにはニューラルネットワークのどの出力が最大であるかわかればよいが、出力の意味をわかりやすくするためにSoftmax値を求める。
+Softmax値を求めるには`chainer.functions.softmax`を使用する。
+出力`Variable`で、`data`プロパティを参照することでnumpy配列(またはcupy配列)が得られる。
+
+```
+from chainer import functions as F
+
+result = F.softmax(y).data
 ```
