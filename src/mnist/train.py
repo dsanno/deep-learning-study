@@ -140,6 +140,7 @@ if __name__ == '__main__':
             print('train loss: {} accuracy: {}'.format(train_loss, train_acc))
             print('valid loss: {} accuracy: {}'.format(valid_loss, valid_acc))
             print('test  loss: {} accuracy: {}'.format(test_loss, test_acc))
+            train_loss_sum = 0
             train_acc_sum = 0
             train_num = 0
             if valid_acc > best_valid_acc:
