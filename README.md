@@ -12,6 +12,14 @@
 * [Deep Learning 開発に必要な環境](/doc/environment.md)
 * [Chainerのインストール方法](/doc/chainer_install.md)
 
+### Numpyの基本
+
+* [Numpyについて、配列の生成](/doc/numpy_1.md)
+* [要素へのアクセス](/doc/numpy_2.md)
+* [配列の変形と連結](/doc/numpy_3.md)
+* [配列の演算](/doc/numpy_4.md)
+* [統計処理と線形代数](/doc/numpy_5.md)
+
 ### Chainerを使ったDeep Lerningの実践
 
 * [手書き数字の認識](/doc/mnist.md)
