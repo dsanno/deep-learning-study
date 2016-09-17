@@ -24,6 +24,7 @@
 
 * [手書き数字の認識](/doc/mnist.md)
 * [Chainerの基本的な使い方](/doc/chainer_basic.md)
+* [Convolutional Neural Network](/doc/chainer_convolution.md)
 
 ### その他
 
