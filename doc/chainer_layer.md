@@ -89,3 +89,55 @@ Convolutional Layerの直後に挿入することが多い。
 ### Average Pooling (functions.average_pooling_2d)
 
 局所領域の平均値を出力する。画像認識では最終出力の数段前にAverage Poolingを挿入して、幅・高さ方向の全平均をとる手法がある。
+
+## 損失関数
+
+使用頻度の高い損失関数が用意されている。
+
+### Softmax Cross Entropy (functions.softmax_cross_entropy)
+
+Softmax Cross Entropyを計算する。多値分類でよく使われる。出力は求めたSoftmax Cross Entropyの平均となる。
+
+### 平均二乗誤差 (functions.mean_squared_error)
+
+平均二乗誤差を計算する。回帰でよく使われる。
+
+## 配列操作
+
+numpyに備わっている配列操作の一部を`chainer.functions`でも行うことができる。
+
+### 連結 (functions.concat)
+
+2つの配列を連結する。
+
+### reshape (functions.reshape)
+
+配列のreshapeを行う。
+
+### 行列積 (functions.matmul)
+
+2つの行列の積を求める。
+
+### バッチごとの行列積 (functions.matmul)
+
+バッチごとに2つの行列の積を求める。配列`a`と配列`b`とがあるとき、`c = functions.batch_matmul(a, b)`とすると、i = 0, 1, 2, ...について`c[i]`は`a[i]`と`b[i]`の積となる。
+
+## 数値計算
+
+### 演算子
+
+numpy配列の計算のように`a + b - c`、`a ** b`といった記述で演算子を使用できる。以下の演算子を使用できる。
+
+* 正負の反転: `-a`
+* 加算: `a + b`
+* 減算: `a - b`
+* 乗算: `a * b`
+* 除算: `a / b`
+* べき乗: `a ** b`
+* 絶対値: `abs(a)`
+* 行列積(Python 3.5以降): `a @ b`  
+`chainer.functions.matmul`でも実行可能なのであえて互換性のない`@`を使用する必要はない。
+
+### 合計 (functions.sum)
+
+合計値を計算する。特定の軸に沿った合計値を出力することもできる。
