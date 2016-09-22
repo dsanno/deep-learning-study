@@ -5,6 +5,7 @@ Convolutional LayerとReLU等のActivation Functionを組み合わせてNeural N
 以降は2次元のConvolutional Layerについて説明する。
 
 Convolutional Layerの図つきの説明としては以下がわかりやすい。
+* [How do Convolutional Neural Networks work?](http://brohrer.github.io/how_convolutional_neural_networks_work.html)
 * [Convolution arithmetic](https://github.com/vdumoulin/conv_arithmetic)
 * [Convolutional Neural Networks (CNNs): An Illustrated Explanation](http://xrds.acm.org/blog/2016/06/convolutional-neural-networks-cnns-illustrated-explanation/)
 
