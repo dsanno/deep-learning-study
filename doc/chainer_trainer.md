@@ -9,8 +9,10 @@ TriggerやExtensionの実装を行えば対応可能だが、Trainerを使わず
 
 ### 学習率のスケジューリングが困難
 
-Deep Learningの学習ではよく「100epochごとに学習率を0.1倍する」などといった学習率のスケジューリングを行うのだが、
-[ExponentialShift](http://docs.chainer.org/en/stable/reference/extensions.html#exponentialshift)、[LinearShift](http://docs.chainer.org/en/stable/reference/extensions.html#linearshift)といったクラスだと1iterationごとにしか学習率を変更できないので不便である。より柔軟なスケジューリングを行うためにはこれらのクラスをTriggerで制御することが必要となる。
+~~Deep Learningの学習ではよく「100epochごとに学習率を0.1倍する」などといった学習率のスケジューリングを行うのだが、
+[ExponentialShift](http://docs.chainer.org/en/stable/reference/extensions.html#exponentialshift)、[LinearShift](http://docs.chainer.org/en/stable/reference/extensions.html#linearshift)といったクラスだと1iterationごとにしか学習率を変更できないので不便である。より柔軟なスケジューリングを行うためにはこれらのクラスをTriggerで制御することが必要となる。~~
+
+2016/9/24追記: `trainer.extend`で`trigger`を指定できるのでExponentialShift, LinearShiftによる学習率変化はTriggerオブジェクトで制御可能である。
 
 また「100, 150, 200epochで学習率を0.1倍する」、「しばらくvalidation dataの精度が上がらなかったら学習率を下げる」などのように複雑な条件もあるので新たなTriggerの実装も必要となる。
 
