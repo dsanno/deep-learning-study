@@ -2,6 +2,10 @@
 
 Deep Learningでは様々なLayerを組み合わせる必要がある。ここでは使用頻度の高いLayerの特徴を説明する。
 
+以下のスライドではLayerのパラメータと学習結果との関係について説明している。Layerについて一通り学習した後に読むと良い。
+
+http://www.slideshare.net/takanoriogata1121/160924-deep-learning-tuningathon
+
 ## chainer.functionsとchainer.linksの違い。
 
 `chainer.functions`はパラメータを持たないLayerを集めたパッケージ、`chainer.links`はパラメータを持つLayerを集めたパッケージである。`chainer.links`にある機能のパラメータを学習対象とせずに自分で指定することもできる。その場合は`chainer.functions`にある同等の機能を使用する。例えば`chainer.links.Liner`のパラメータを指定したい場合には`chainer.functions.linear`を使う。
