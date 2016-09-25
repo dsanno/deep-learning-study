@@ -26,6 +26,7 @@
 * [Chainerの基本的な使い方](/doc/chainer_basic.md)
 * [Convolutional Neural Network](/doc/chainer_convolution.md)
 * [Layerについて](/doc/chainer_layer.md)
+* [最適化アルゴリズム](/doc/chainer_optimizer.md)
 
 ### その他
 
