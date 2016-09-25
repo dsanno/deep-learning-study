@@ -35,3 +35,9 @@
 ### 参考資料
 
 * [Neural Networks and Deep Learning](http://neuralnetworksanddeeplearning.com/) ([日本語訳](http://nnadl-ja.github.io/nnadl_site_ja/index.html))
+* Convolutional Neural Network
+    * [How do Convolutional Neural Networks work?](http://brohrer.github.io/how_convolutional_neural_networks_work.html)
+    * [Convolution arithmetic](https://github.com/vdumoulin/conv_arithmetic)
+    * [Convolutional Neural Networks (CNNs): An Illustrated Explanation](http://xrds.acm.org/blog/2016/06/convolutional-neural-networks-cnns-illustrated-explanation/)
+* Optimizer
+    * [An overview of gradient descent optimization algorithms](http://sebastianruder.com/optimizing-gradient-descent/) [日本語訳](http://postd.cc/optimizing-gradient-descent/)
