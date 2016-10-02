@@ -28,6 +28,10 @@
 * [Layerについて](/doc/chainer_layer.md)
 * [最適化アルゴリズム](/doc/chainer_optimizer.md)
 
+### 演習
+
+* [演習1 領域の分割](/doc/exercise_1.md)
+
 ### その他
 
 * [ChainerのTrainerについて](/doc/chainer_trainer.md)
