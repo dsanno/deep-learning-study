@@ -12,6 +12,8 @@ cd src/ex1
 python train.py
 ```
 
+`/src/ex1_2`ディレクトリにも同様のコードがある。こちらのほうが難易度が高い。
+
 ## 実行結果
 
 正しく実装されていれば、epoch毎の学習データのloss/accuracy、テストデータのloss, accuracyを出力する。
