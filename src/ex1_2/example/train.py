@@ -94,7 +94,7 @@ def main(train_x, train_y, test_x, test_y):
             train_loss = train_loss_sum / train_num
             train_acc = train_acc_sum / train_num
             print('epoch {} done'.format(train_iterator.epoch))
-            print('train loss: {} accracy: {}').format(train_loss, train_acc)
+            print('train loss: {} accracy: {}'.format(train_loss, train_acc))
 
             # TODO テストデータの精度を計算
             test_loss, test_acc = evaluate(net, test_data)
