@@ -27,6 +27,7 @@
 * [Convolutional Neural Network](/doc/chainer_convolution.md)
 * [Layerについて](/doc/chainer_layer.md)
 * [最適化アルゴリズム](/doc/chainer_optimizer.md)
+* [Caffe modelの使用](/doc/chainer_caffemodel.md)
 
 ### 演習
 

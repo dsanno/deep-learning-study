@@ -1,3 +1,4 @@
 *.pyc
 *.model
+*.caffemodel
 src/**/*.png
