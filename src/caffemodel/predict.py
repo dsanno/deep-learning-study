@@ -52,7 +52,7 @@ def print_top(x, categories, top=10):
     scores = x.reshape((-1,))
     result = sorted(zip(scores, categories), reverse=True)
     for i, (score, label) in enumerate(result[:top]):
-        print '{:>3d} {:>6.2f}% {}'.format(i + 1, float(score) * 100, label)
+        print('{:>3d} {:>6.2f}% {}'.format(i + 1, float(score) * 100, label))
 
 
 if __name__ == '__main__':
@@ -84,4 +84,4 @@ if __name__ == '__main__':
             # cupy配列はソートに時間がかかるのでnumpy配列に変換する
             print_top(cuda.to_cpu(y.data), categories)
         except IOError:
-            print('cannot load {}'.format(image_file))
+            print('cannot load {}'.format(image_path))
