@@ -14,6 +14,7 @@ from chainer import serializers
 from chainer.dataset import convert
 
 import net as net_module
+from lbfgs import LBFGS
 
 # Data augmentationのために
 # データを-offset～offsetの範囲で平行移動する
@@ -87,7 +88,8 @@ if __name__ == '__main__':
         xp = cuda.cupy
     else:
         xp = np
-    optimizer = optimizers.Adam()
+#    optimizer = optimizers.Adam()
+    optimizer = LBFGS(lr=0.1, size=10)
     optimizer.setup(net)
 
     # MNISTデータセットを読み込む
@@ -129,6 +131,7 @@ if __name__ == '__main__':
         train_loss_sum += float(loss.data) * len(x)
         train_acc_sum += float(acc.data) * len(x)
         train_num += len(x)
+        print train_num
         if train_iterator.is_new_epoch:
             train_loss = train_loss_sum / train_num
             train_acc = train_acc_sum / train_num
