@@ -78,7 +78,7 @@ def train_one(net, optimizer, xs):
 def train(epoch_num, model_path):
     batch_size = 5
     max_data_length = 100
-    it_per_epoch = 50
+    it_per_epoch = 100
     net = Bouncing()
     optimizer = chainer.optimizers.Adam(alpha=0.001)
     optimizer.setup(net)
