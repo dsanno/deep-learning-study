@@ -1,0 +1,10 @@
+{
+  "en": {
+    "train": "dev.en",
+    "test": "test.en"
+  },
+  "ja": {
+    "train": "dev.ja",
+    "test": "test.ja"
+  }
+}
