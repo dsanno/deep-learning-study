@@ -47,3 +47,6 @@
     * [Convolutional Neural Networks (CNNs): An Illustrated Explanation](http://xrds.acm.org/blog/2016/06/convolutional-neural-networks-cnns-illustrated-explanation/)
 * Optimizer
     * [An overview of gradient descent optimization algorithms](http://sebastianruder.com/optimizing-gradient-descent/) [日本語訳](http://postd.cc/optimizing-gradient-descent/)
+* Recurrent Neural Network, LSTM
+    * [わかるLSTM ～ 最近の動向と共に](http://qiita.com/t_Signull/items/21b82be280b46f467d1b)
+    * [Understanding LSTM Networks](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) [日本語訳](http://qiita.com/KojiOhki/items/89cd7b69a8a6239d67ca)
