@@ -8,7 +8,7 @@
 
 ### 学習データ生成
 
-0. 以下のリポジトリをクローンする。
+0. 以下のリポジトリをクローンする。  
 https://github.com/odashi/small_parallel_enja
 0. 以下のコマンドを実行する。(dataset_repository_rootはクローンしたデータセットリポジトリのルートディレクトリ)。
 ```
