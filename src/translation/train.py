@@ -83,8 +83,8 @@ class EncoderDecoder(chainer.Chain):
                 link.h.data[index, ...] = h
 
 def sort_batch(inputs, targets):
-    input_order = np.argsort(np.asarray(map(len, inputs), dtype=np.int32))[::-1]
-    target_order = np.argsort(np.asarray(map(len, targets), dtype=np.int32))[::-1]
+    input_order = np.argsort(np.asarray(list(map(len, inputs)), dtype=np.int32))[::-1]
+    target_order = np.argsort(np.asarray(list(map(len, targets)), dtype=np.int32))[::-1]
     sorted_inputs = [inputs[i] for i in input_order]
     sorted_targets = [targets[i] for i in target_order]
     inv_input_order = np.zeros_like(input_order, dtype=np.int32)
@@ -247,11 +247,11 @@ if __name__ == '__main__':
     output_train = dataset[args.output_lang]['train']
     output_test = dataset[args.output_lang]['test']
 
-    inputs = map(lambda x: chainer.Variable(np.asarray(x[::-1], dtype=np.int32), volatile=True), input_train)
+    inputs = list(map(lambda x: chainer.Variable(np.asarray(x[::-1], dtype=np.int32), volatile=True), input_train))
     max_output_len = max(map(len, output_train))
-    targets = map(lambda x: chainer.Variable(np.asarray([begin_id] + x + [end_id], dtype=np.int32), volatile=True), output_train)
-    test_inputs = map(lambda x: chainer.Variable(np.asarray(x[::-1], dtype=np.int32), volatile=True), input_test)
-    test_targets = map(lambda x: chainer.Variable(np.asarray([begin_id] + x + [end_id], dtype=np.int32), volatile=True), output_test)
+    targets = list(map(lambda x: chainer.Variable(np.asarray([begin_id] + x + [end_id], dtype=np.int32), volatile=True), output_train))
+    test_inputs = list(map(lambda x: chainer.Variable(np.asarray(x[::-1], dtype=np.int32), volatile=True), input_test))
+    test_targets = list(map(lambda x: chainer.Variable(np.asarray([begin_id] + x + [end_id], dtype=np.int32), volatile=True), output_test))
 
     net = EncoderDecoder(len(input_words), len(output_words), args.hidden_size)
     optimizer = chainer.optimizers.Adam(alpha=0.001)
