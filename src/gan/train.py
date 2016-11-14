@@ -146,7 +146,7 @@ def generate_image(gen, z, file_path):
     x = gen(z, train=True)
     im = cuda.to_cpu(x.data)
     im = im.reshape((10, 10, 28, 28)).transpose((0, 2, 1, 3)).reshape((280, 280))
-    im = ((im + 1) * 128).clip(0, 255).astype(np.uint8)
+    im = ((1 - im) * 128).clip(0, 255).astype(np.uint8)
     Image.fromarray(im).save(file_path)
 
 def train(gen, dis, gen_optimizer, dis_optimizer, iterator, iteration, name):
@@ -163,7 +163,7 @@ def train(gen, dis, gen_optimizer, dis_optimizer, iterator, iteration, name):
     for i in six.moves.range(iteration):
         batch = train_iterator.next()
         x = convert.concat_examples(batch)
-        x = xp.asarray(x - 1)
+        x = xp.asarray(translate(x, 2) - 1)
         z = xp.random.uniform(-1, 1, (x.shape[0], latent_size)).astype(np.float32)
         loss_gen, loss_dis = update(gen, dis, gen_optimizer, dis_optimizer, x, z)
         loss_dis_sum += float(loss_dis.data)
@@ -190,7 +190,7 @@ if __name__ == '__main__':
     parser.add_argument('--gpu', '-g', type=int, default=-1, help='GPU device index, -1 indicates CPU')
     parser.add_argument('--iter', '-i', type=int, default=5000, help='Number of iterations')
     parser.add_argument('--batch-size', '-b', type=int, default=100, help='Mini batch size')
-    parser.add_argument('--name', '-n', type=str, default='gan', help='saved file name')
+    parser.add_argument('--name', '-n', type=str, default='image/gan', help='saved file name')
     args = parser.parse_args()
 
     batch_size = args.batch_size
