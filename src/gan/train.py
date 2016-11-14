@@ -170,7 +170,7 @@ def train(gen, dis, gen_optimizer, dis_optimizer, iterator, iteration, name):
         loss_gen_sum += float(loss_gen.data)
         loss_num += 1
 
-        if (i + 1) % 100 == 0:
+        if (i + 1) % 200 == 0:
             current_clock = time.clock()
             print('iteration {} done {}s elapsed'.format(i + 1, current_clock - last_clock))
             last_clock = current_clock
