@@ -76,7 +76,7 @@ def train(net, optimizer, iterator, iteration, name):
         loss_sum += float(loss.data)
         loss_num += 1
 
-        if (i + 1) % 500 == 0:
+        if (i + 1) % 1000 == 0:
             current_clock = time.clock()
             print('iteration {} done {}s elapsed'.format(i + 1, current_clock - last_clock))
             last_clock = current_clock
@@ -91,7 +91,7 @@ if __name__ == '__main__':
 
     parser = argparse.ArgumentParser(description='Variational Auto Encoder sample')
     parser.add_argument('--gpu', '-g', type=int, default=-1, help='GPU device index, -1 indicates CPU')
-    parser.add_argument('--iter', '-i', type=int, default=50000, help='Number of iterations')
+    parser.add_argument('--iter', '-i', type=int, default=30000, help='Number of iterations')
     parser.add_argument('--batch-size', '-b', type=int, default=100, help='Mini batch size')
     parser.add_argument('--name', '-n', type=str, default='image/vae', help='saved file name')
     args = parser.parse_args()
