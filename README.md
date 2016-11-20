@@ -29,6 +29,7 @@
 * [最適化アルゴリズム](/doc/chainer_optimizer.md)
 * [Caffe modelの使用](/doc/chainer_caffemodel.md)
 * [翻訳](/doc/translation.md)
+* [強化学習](/doc/reinforcement.md)
 
 ### 演習
 
